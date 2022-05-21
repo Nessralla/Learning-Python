@@ -1,0 +1,1 @@
+# Adicionar a função resumo ao módulo moeda
