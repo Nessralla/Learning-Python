@@ -218,5 +218,113 @@ class Spam:
 s = Spam()
 s.print_egg()
 print(s._Spam__egg)
-print(s.__egg)
+# print(s.__egg)
+
+# Class Methods
+
+
+# Methods of objects we've looked at so far are called by an instance of a class, which is then passed to the 
+# self parameter of the method.
+# Class methods are different - they are called by a class, which is passed to the cls parameter of the method.
+# A common use of these are factory methods, which instantiate an instance of a class, using different 
+# parameters than those usually passed to the class constructor.
+# Class methods are marked with a classmethod decorator.
+# Example:
+
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def calculate_area(self):
+        return self.width * self.height
+
+    @classmethod
+    def new_square(cls, side_length):
+        return cls(side_length, side_length)
+
+square = Rectangle.new_square(5)
+print(square.calculate_area())
+
+# new_square is a class method and is called on the class, rather than on an instance of the class. 
+# It returns a new object of the class cls.
+
+
+# Static Methods
+
+
+# Static methods are similar to class methods, except they don't receive any additional arguments; 
+# they are identical to normal functions that belong to a class.
+# They are marked with the staticmethod decorator.
+# Example:
+
+class Pizza:
+    def __init__(self, toppings):
+        self.toppings = toppings
+
+    @staticmethod
+    def validate_topping(topping):
+        if topping == "pineapple":
+            raise ValueError("No pineapples!")
+        else:
+            return True
+
+ingredients = ["cheese", "onions", "spam"]
+if all(Pizza.validate_topping(i) for i in ingredients):
+    pizza = Pizza(ingredients)
+
+# Properties
+
+
+# Properties provide a way of customizing access to instance attributes.
+# They are created by putting the property decorator above a method, which means when the instance attribute with the same name as the method is accessed, the method will be called instead.
+# One common use of a property is to make an attribute read-only.
+# Example:
+
+class Pizza:
+    def __init__(self, toppings):
+        self.toppings = toppings
+
+    @property
+    def pineapple_allowed(self):
+        return False
+
+pizza = Pizza(["cheese", "tomato"])
+print(pizza.pineapple_allowed)
+pizza.pineapple_allowed = True
+
+
+# Properties
+
+
+# Properties can also be set by defining setter/getter functions.
+# The setter function sets the corresponding property's value.
+# The getter gets the value.
+# To define a setter, you need to use a decorator of the same name as the property, followed by a dot and the setter keyword.
+# The same applies to defining getter functions.
+
+# Example:
+
+class Pizza:
+    def __init__(self, toppings):
+        self.toppings = toppings
+        self._pineapple_allowed = False
+
+    @property
+    def pineapple_allowed(self):
+        return self._pineapple_allowed
+
+    @pineapple_allowed.setter
+    def pineapple_allowed(self, value):
+        if value:
+            password = input("Enter the password: ")
+            if password == "Sw0rdf1sh!":
+                self._pineapple_allowed = value
+            else:
+                raise ValueError("Alert! Intruder!")
+
+pizza = Pizza(["cheese", "tomato"])
+print(pizza.pineapple_allowed)
+pizza.pineapple_allowed = True
+print(pizza.pineapple_allowed)
 
