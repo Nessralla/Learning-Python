@@ -1,10 +1,9 @@
-word = input()
 
-letra = input()
+lista = []
 
-count= 0
+for i in range(3):
+    lista.append(int(input()))
 
-for lettter in word:
-    if letra.toupper() == lettter.toupper():
-        count+=1
-print(count) 
+lista.sort()
+
+print(lista[1])
