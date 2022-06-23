@@ -5,6 +5,7 @@ sair = 0
 
 while True:
     if opc == 2:
+        print("")
         break
 
  
@@ -23,4 +24,4 @@ while True:
     NotasValidas = 2
     sum = 0
     opc = 0
-    opc = int(input("novo calculo (1-sim 2-nao)"))
+    opc = int(input("novo calculo (1-sim 2-nao)\n"))
