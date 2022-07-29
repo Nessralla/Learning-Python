@@ -5,7 +5,6 @@ sair = 0
 
 while True:
     if opc == 2:
-        print("")
         break
 
  
